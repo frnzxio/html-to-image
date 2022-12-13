@@ -10,13 +10,14 @@ import {
   canvasToBlob,
   nodeToDataURL,
   checkCanvasDimensions,
+  nodeToSvg,
 } from './util'
 
 export async function toSvg<T extends HTMLElement>(
   node: T,
   options: Options,
   retunrNode: true,
-): Promise<HTMLElement>
+): Promise<SVGSVGElement>
 
 export async function toSvg<T extends HTMLElement>(
   node: T,
@@ -28,13 +29,13 @@ export async function toSvg<T extends HTMLElement>(
   node: T,
   options: Options = {},
   retunrNode?: true | undefined,
-): Promise<HTMLElement | string> {
+): Promise<SVGSVGElement | string> {
   const { width, height } = getImageSize(node, options)
   const clonedNode = (await cloneNode(node, options, true)) as HTMLElement
   await embedWebFonts(clonedNode, options)
   await embedImages(clonedNode, options)
   applyStyle(clonedNode, options)
-  if (retunrNode) return clonedNode
+  if (retunrNode) return nodeToSvg(clonedNode, width, height)
   const datauri = await nodeToDataURL(clonedNode, width, height)
   return datauri
 }
