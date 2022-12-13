@@ -3,5 +3,5 @@
   "rules": {
     "default-param-last": "off"
   },
-  "ignorePatterns": ["dist/**", "es/**"],
+  "ignorePatterns": ["dist/**", "es/**", "lib/**"],
 }
