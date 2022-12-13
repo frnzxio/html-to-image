@@ -2,5 +2,6 @@
   "extends": "@bubkoo/eslint-config",
   "rules": {
     "default-param-last": "off"
-  } 
+  },
+  "ignorePatterns": ["dist/**", "es/**"],
 }
