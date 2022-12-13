@@ -2,7 +2,7 @@ import { cloneNode } from './clone-node';
 import { embedImages } from './embed-images';
 import { applyStyle } from './apply-style';
 import { embedWebFonts, getWebFontCSS } from './embed-webfonts';
-import { getImageSize, getPixelRatio, createImage, canvasToBlob, nodeToDataURL, checkCanvasDimensions, } from './util';
+import { getImageSize, getPixelRatio, createImage, canvasToBlob, nodeToDataURL, checkCanvasDimensions, nodeToSvg, } from './util';
 export async function toSvg(node, options = {}, retunrNode) {
     const { width, height } = getImageSize(node, options);
     const clonedNode = (await cloneNode(node, options, true));
@@ -10,7 +10,7 @@ export async function toSvg(node, options = {}, retunrNode) {
     await embedImages(clonedNode, options);
     applyStyle(clonedNode, options);
     if (retunrNode)
-        return clonedNode;
+        return nodeToSvg(clonedNode, width, height);
     const datauri = await nodeToDataURL(clonedNode, width, height);
     return datauri;
 }

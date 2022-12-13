@@ -1,5 +1,5 @@
 import { Options } from './types';
-export declare function toSvg<T extends HTMLElement>(node: T, options: Options, retunrNode: true): Promise<HTMLElement>;
+export declare function toSvg<T extends HTMLElement>(node: T, options: Options, retunrNode: true): Promise<SVGSVGElement>;
 export declare function toSvg<T extends HTMLElement>(node: T, options: Options, retunrNode?: undefined): Promise<string>;
 export declare function toCanvas<T extends HTMLElement>(node: T, options?: Options): Promise<HTMLCanvasElement>;
 export declare function toPixelData<T extends HTMLElement>(node: T, options?: Options): Promise<Uint8ClampedArray>;

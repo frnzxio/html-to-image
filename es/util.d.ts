@@ -13,3 +13,4 @@ export declare function canvasToBlob(canvas: HTMLCanvasElement, options?: Option
 export declare function createImage(url: string): Promise<HTMLImageElement>;
 export declare function svgToDataURL(svg: SVGElement): Promise<string>;
 export declare function nodeToDataURL(node: HTMLElement, width: number, height: number): Promise<string>;
+export declare function nodeToSvg(node: HTMLElement, width: number, height: number): Promise<SVGSVGElement>;
