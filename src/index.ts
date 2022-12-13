@@ -14,13 +14,27 @@ import {
 
 export async function toSvg<T extends HTMLElement>(
   node: T,
+  options: Options,
+  retunrNode: true,
+): Promise<HTMLElement>
+
+export async function toSvg<T extends HTMLElement>(
+  node: T,
+  options: Options,
+  retunrNode?: undefined,
+): Promise<string>
+
+export async function toSvg<T extends HTMLElement>(
+  node: T,
   options: Options = {},
-): Promise<string> {
+  retunrNode?: true | undefined,
+): Promise<HTMLElement | string> {
   const { width, height } = getImageSize(node, options)
   const clonedNode = (await cloneNode(node, options, true)) as HTMLElement
   await embedWebFonts(clonedNode, options)
   await embedImages(clonedNode, options)
   applyStyle(clonedNode, options)
+  if (retunrNode) return clonedNode
   const datauri = await nodeToDataURL(clonedNode, width, height)
   return datauri
 }
